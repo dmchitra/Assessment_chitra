@@ -1,19 +1,18 @@
 # Assessment_chitra
- Assessment 
-
+ 
 Web Automation Exercise
 
 Develop a Web test solution that automates a scenario, composed as BDD scenarios. The target for the test is the dummy web site: https://testscriptdemo.com/ 
 
-•Scenario 1: Add four items into the wishlist and add the low priced item into the cart
+â€¢Scenario 1: Add four items into the wishlist and add the low priced item into the cart
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 Install the following
-•JAVA SE 8 - Set Java_home and Path varibles
-•Maven - version 3.3.1 or higher -Set Maven_home and Path varibles
-•Eclise IDE -Eclipse Cucumber for Java plugin Steps to install
-•Chrome - make sure to download the chrome driver based on the installed in the machine where the scripts are running
+â€¢JAVA SE 8 - Set Java_home and Path varibles
+â€¢Maven - version 3.3.1 or higher -Set Maven_home and Path varibles
+â€¢Eclise IDE -Eclipse Cucumber for Java plugin Steps to install
+â€¢Chrome - make sure to download the chrome driver based on the installed in the machine where the scripts are running
 
 Running the tests
 
@@ -23,7 +22,7 @@ There are 2 way to run the tests:
 
 Improvements
  - Data can be parameterised using examples
- - Can implement dependency injection using spring boot reduces the every page object creation
+ - Can implement dependency injection using spring boot helps to reduce every page object creation
  - Properties file can be used to externalise the hard coded parameters like url
  - Cross browser/plaform support can be enabled
  - Reporting part needs to be improved with screenshots
