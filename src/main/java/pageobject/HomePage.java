@@ -3,6 +3,7 @@ package pageobject;
 import java.util.List;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,10 +24,10 @@ public class HomePage extends WebDriverUtility{
 	@FindBy(xpath="//div[@class = 'header-cart']/..//div[@class = 'header-wishlist']//a")
 	private WebElement lnkWishList;
 			
-	//@FindBy(xpath="//a[text()='Add to cart']//parent::li//span[text()='Add to wishlist']")
-	@FindBy(xpath="//span[text()='Add to wishlist']")
+	@FindBy(xpath="//a[text()='Add to cart']//parent::li//span[text()='Add to wishlist']")
+	//@FindBy(xpath="//span[text()='Add to wishlist']")
 	List<WebElement> allElements;
-	 
+	
 
 	/**
 	 * Method to wait for page to load and verify the HomePage title
@@ -50,13 +51,12 @@ public class HomePage extends WebDriverUtility{
 	 * Method to click on the add to cart button
 	 * @throws InterruptedException 
 	 */
-	public void addproductstocart(int noofitems)
+	public void addproductstocart(String stritem) throws InterruptedException
 	{		
-		for(int i=1;i<=noofitems;i++)
-		{			
-			clickElement(allElements.get(i));		
-			
-		}
+		WebElement ele = driver.findElement(By.xpath("(//h2[text()='"+stritem+"']/../..//span[text()='Add to wishlist'])[1]"));			
+		clickElement(ele);
+		Thread.sleep(4000);	//can be avoided and should be removed
+				
 	}
 	
 	

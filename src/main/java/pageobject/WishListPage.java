@@ -19,8 +19,17 @@ public class WishListPage extends WebDriverUtility{
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath="//table[contains(@class,'wishlist_table')]//tr")
+	@FindBy(xpath="//table[contains(@class,'wishlist_table')]/tbody//tr")
 	private List<WebElement> tblWishlist;
+	
+	@FindBy(xpath="//div[@class='site-header container-fluid']//a[@title='Cart']")
+	private WebElement lnkCart;
+	
+	@FindBy(xpath="//table[contains(@class,'shop_table')]/tbody/tr")
+	private List<WebElement> tblItemsinCart;
+	
+	@FindBy(xpath="//div[@class='woocommerce-message']")
+	private WebElement lblAddedtoCart;
 	
 	
 	/**
@@ -29,8 +38,8 @@ public class WishListPage extends WebDriverUtility{
 	 * @param passwrd password of the provided userName
 	 */
 	public void verifyNumberOfProductsInWishList(int noofitems) {
-	 	waitUntilPageLoad();
-         int itemsinwishlist = tblWishlist.size() - 1;   
+	 	 waitUntilPageLoad();
+         int itemsinwishlist = tblWishlist.size();   
          Assert.assertEquals(itemsinwishlist,noofitems);         
          }
 	
@@ -41,11 +50,10 @@ public class WishListPage extends WebDriverUtility{
 	            WebElement insElement;
 	            String productId = currentRow.getAttribute("data-row-id");
 	            try {
-	                insElement = currentRow.findElement(By.tagName("ins"));
-	                //TODO:: use String.format instead of hardcoding
-	                map.put(productId, Double.parseDouble(insElement.findElement(By.tagName("bdi")).getText().split("Â£")[1]));
+	                insElement = currentRow.findElement(By.tagName("ins"));	              
+	                map.put(productId, Double.parseDouble(insElement.findElement(By.tagName("bdi")).getText().split("£")[1]));
 	            } catch (Exception e) {
-	                map.put(productId, Double.parseDouble(currentRow.findElement(By.tagName("bdi")).getText().split("Â£")[1]));
+	                map.put(productId, Double.parseDouble(currentRow.findElement(By.tagName("bdi")).getText().split("£")[1]));
 	            }
 	        }
 	        Optional<Map.Entry<String, Double>> lowestProductEntry = map.entrySet().stream().min(Comparator.comparing(Map.Entry::getValue));
@@ -53,10 +61,20 @@ public class WishListPage extends WebDriverUtility{
 	    }
 	 
 	 public void addLowestPricedProductToCart(Map.Entry<String, Double> theLowestPricedProduct) {
-		 driver.findElement(By.xpath("//*[@id=\"yith-wcwl-row-" + theLowestPricedProduct.getKey() + "\"]/td[6]/a")).click();
+		 driver.findElement(By.xpath("//tr[@data-row-id='" + theLowestPricedProduct.getKey() + "']/td[@class='product-add-to-cart']/a")).click();
+		 //Assert.assertTrue(verifyProductAddedToCart());
+	    }
+	 public boolean verifyProductAddedToCart() {
+	        return lblAddedtoCart.isDisplayed();
 	    }
 
+	    public void gotoCart() {	        
+	        clickElement(lnkCart);
+			waitUntilPageLoad();
+	    }
 	    
-	 
-
+	    public String getItemFromCart() {	        
+	        WebElement firstRow = tblItemsinCart.get(1);
+	        return firstRow.findElement(By.xpath("//td[@class='product-remove']/a")).getAttribute("data-product_id");
+	    }
 }
