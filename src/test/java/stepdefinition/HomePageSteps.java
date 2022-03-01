@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.Assert;
 
 import io.cucumber.java.en.And;
-
+import pageobject.CartPage;
 import pageobject.HomePage;
 import pageobject.WishListPage;
 import webdrivermanager.DriverManager;
@@ -17,6 +17,7 @@ import webdrivermanager.DriverManager;
 public class HomePageSteps extends DriverManager{
 	WishListPage wishlistpage;
 	HomePage homePage;
+	CartPage cart;
 	 Map.Entry<String, Double> theLowestPricedProduct;
 	 
 	@Given("User Launch the url {string}")
@@ -55,8 +56,9 @@ public class HomePageSteps extends DriverManager{
 	}
 	@Then("i am able to verify the item in my cart")
 	public void i_am_able_to_verify_the_item_in_mycart() {
-		wishlistpage.gotoCart();
-		Assert.assertTrue(theLowestPricedProduct.getKey().equals(wishlistpage.getItemFromCart()));
+		cart = new CartPage();
+		cart.gotoCart();
+		Assert.assertTrue(theLowestPricedProduct.getKey().equals(cart.getItemFromCart()));
       
 	}
 	  

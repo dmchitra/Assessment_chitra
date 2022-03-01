@@ -22,11 +22,6 @@ public class WishListPage extends WebDriverUtility{
 	@FindBy(xpath="//table[contains(@class,'wishlist_table')]/tbody//tr")
 	private List<WebElement> tblWishlist;
 	
-	@FindBy(xpath="//div[@class='site-header container-fluid']//a[@title='Cart']")
-	private WebElement lnkCart;
-	
-	@FindBy(xpath="//table[contains(@class,'shop_table')]/tbody/tr")
-	private List<WebElement> tblItemsinCart;
 	
 	@FindBy(xpath="//div[@class='woocommerce-message']")
 	private WebElement lblAddedtoCart;
@@ -66,15 +61,5 @@ public class WishListPage extends WebDriverUtility{
 	    }
 	 public boolean verifyProductAddedToCart() {
 	        return lblAddedtoCart.isDisplayed();
-	    }
-
-	    public void gotoCart() {	        
-	        clickElement(lnkCart);
-			waitUntilPageLoad();
-	    }
-	    
-	    public String getItemFromCart() {	        
-	        WebElement firstRow = tblItemsinCart.get(1);
-	        return firstRow.findElement(By.xpath("//td[@class='product-remove']/a")).getAttribute("data-product_id");
-	    }
+	    }    
 }
