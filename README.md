@@ -4,7 +4,7 @@ Web Automation Exercise
 
 Develop a Web test solution that automates a scenario, composed as BDD scenarios. The target for the test is the dummy web site: https://testscriptdemo.com/ 
 
-•Scenario 1: Add four items into the wishlist and add the low priced item into the cart
+Scenario 1: Add four items into the wishlist and add the low priced item into the cart
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
