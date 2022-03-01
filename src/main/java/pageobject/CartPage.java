@@ -20,17 +20,9 @@ public class CartPage extends WebDriverUtility{
 	}
 	
 	
-	
-	@FindBy(xpath="//div[@class='site-header container-fluid']//a[@title='Cart']")
-	private WebElement lnkCart;
-	
 	@FindBy(xpath="//table[contains(@class,'shop_table')]/tbody/tr")
 	private List<WebElement> tblItemsinCart;
 	
-	    public void gotoCart() {	        
-	        clickElement(lnkCart);
-			waitUntilPageLoad();
-	    }
 	    
 	    public String getItemFromCart() {	        
 	        WebElement firstRow = tblItemsinCart.get(1);

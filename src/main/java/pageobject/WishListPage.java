@@ -26,7 +26,12 @@ public class WishListPage extends WebDriverUtility{
 	@FindBy(xpath="//div[@class='woocommerce-message']")
 	private WebElement lblAddedtoCart;
 	
-	
+	@FindBy(xpath="//div[@class='site-header container-fluid']//a[@title='Cart']")
+	private WebElement lnkCart;
+	    public void gotoCart() {	        
+	        clickElement(lnkCart);
+			waitUntilPageLoad();
+	    }
 	/**
 	 * Method to log in into the application with given username and password
 	 * @param userName User userName to log in

@@ -52,12 +52,12 @@ public class HomePageSteps extends DriverManager{
 	
 	@And("i am able to add the lowest price item to my cart")
 	public void i_am_able_to_add_the_lowest_price_item_to_mycart() {
-		wishlistpage.addLowestPricedProductToCart(theLowestPricedProduct);       
+		wishlistpage.addLowestPricedProductToCart(theLowestPricedProduct);
+		wishlistpage.gotoCart();
 	}
 	@Then("i am able to verify the item in my cart")
 	public void i_am_able_to_verify_the_item_in_mycart() {
-		cart = new CartPage();
-		cart.gotoCart();
+		cart = new CartPage();		
 		Assert.assertTrue(theLowestPricedProduct.getKey().equals(cart.getItemFromCart()));
       
 	}
